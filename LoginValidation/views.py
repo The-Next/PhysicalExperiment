@@ -8,6 +8,7 @@ from django.contrib.auth.hashers import make_password
 from LoginValidation.models import *
 from LoginValidation.serializers import *
 from rest_framework.views import APIView
+from rest_framework_jwt.utils import jwt_decode_handler
 # Create your views here.
 #用于用户注册
 class UserRegisterAPIView(APIView):
@@ -18,6 +19,10 @@ class UserRegisterAPIView(APIView):
     def post(self ,request, format=None):
         data = request.data.copy()
         s_num = data.get('s_num')
+        '''token = request.GET.get('token')
+        toke_user = []
+        toke_user = jwt_decode_handler(token)
+        print(toke_user['user_id'])'''
         data['password'] = make_password(data.get('password'))
         if User.objects.filter(s_num__exact=s_num):#如果用户名存在，返回错误
             return Response("学号已存在",HTTP_400_BAD_REQUEST)
@@ -32,10 +37,8 @@ class CustomBackend(ModelBackend):
     自定义用户验证规则
     '''
     def authenticate(self, request, username=None, password=None, **kwargs):
-        print(12)
         try:
             user = User.objects.get(Q(username=username) | Q(s_num=username))
-            print(user.username)
             if user.check_password(password):
                 return user
         except Exception as e:
