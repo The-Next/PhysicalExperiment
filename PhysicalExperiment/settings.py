@@ -39,9 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'LoginValidation.apps.LoginvalidationConfig',
     'Experimentation.apps.ExperimentationConfig',
+    'Michelson.apps.MichelsonConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',
+    'xadmin',
+    'crispy_forms',
+    'reversion',
 ]
 
 MIDDLEWARE = [

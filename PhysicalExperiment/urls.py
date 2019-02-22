@@ -19,11 +19,16 @@ from LoginValidation.views import *
 from Experimentation.views import *
 from  rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_swagger.views import get_swagger_view
+import xadmin
+xadmin.autodiscover()
+from xadmin.plugins import xversion
+xversion.register_models()
 schema_view = get_swagger_view(title='api文档')
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', xadmin.site.urls),
     path('api-token-auth',obtain_jwt_token),
     path('register/',UserRegisterAPIView.as_view()),
     path('',include('Experimentation.urls')),
+    path('',include('Michelson.urls')),
     path('docs/',schema_view),
 ]

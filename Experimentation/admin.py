@@ -4,7 +4,7 @@ from Experimentation.models import *
 @admin.register(NewTown)
 class NewTownAdmin(admin.ModelAdmin):
     fieldsets =  (
-        (None, {'fields': ('user_name', 'user_num')}),
+        (None, {'fields': ('user_id','user_name', 'user_num')}),
         (('实验参数'),{'fields': ('Instrumenttolerance', 'lamda')}),
         (('左侧数据'), {'fields': ('l5', 'l6', 'l7', 'l8', 'l9', 'l10', 'l25', 'l26', 'l27', 'l28', 'l29', 'l30')}),
         (('右侧数据'), {'fields': ('r5', 'r6', 'r7', 'r8', 'r9', 'r10', 'r25', 'r26', 'r27', 'r28', 'r29', 'r30')}),

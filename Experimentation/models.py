@@ -44,12 +44,12 @@ class NewTown(models.Model):
     d29 = models.DecimalField(verbose_name='第29个环直径(mm)',max_digits=10, decimal_places=4)
     d30 = models.DecimalField(verbose_name='第30个环直径(mm)',max_digits=10, decimal_places=4)
 
-    r30_10 = models.DecimalField(verbose_name='30与10所求得的曲率半径',max_digits=10, decimal_places=4)
-    r29_9 = models.DecimalField(verbose_name='29与9所求得的曲率半径',max_digits=10, decimal_places=4)
-    r28_8 = models.DecimalField(verbose_name='28与8所求得的曲率半径',max_digits=10, decimal_places=4)
-    r27_7 = models.DecimalField(verbose_name='27与7所求得的曲率半径',max_digits=10, decimal_places=4)
-    r26_6 = models.DecimalField(verbose_name='26与6所求得的曲率半径',max_digits=10, decimal_places=4)
-    r25_5 = models.DecimalField(verbose_name='25与5所求得的曲率半径',max_digits=10, decimal_places=4)
+    r30_10 = models.DecimalField(verbose_name='30与10所得的曲率半径',max_digits=10, decimal_places=4)
+    r29_9 = models.DecimalField(verbose_name='29与9所得的曲率半径',max_digits=10, decimal_places=4)
+    r28_8 = models.DecimalField(verbose_name='28与8所得的曲率半径',max_digits=10, decimal_places=4)
+    r27_7 = models.DecimalField(verbose_name='27与7所得的曲率半径',max_digits=10, decimal_places=4)
+    r26_6 = models.DecimalField(verbose_name='26与6所得的曲率半径',max_digits=10, decimal_places=4)
+    r25_5 = models.DecimalField(verbose_name='25与5所得的曲率半径',max_digits=10, decimal_places=4)
 
     value30_10 = models.DecimalField(verbose_name='30与10半径平方差',max_digits=10, decimal_places=4)
     value29_9 = models.DecimalField(verbose_name='29与9半径平方差',max_digits=10, decimal_places=4)
@@ -63,6 +63,8 @@ class NewTown(models.Model):
     uncertainty = models.DecimalField(verbose_name='不确定度(m)',max_digits=10, decimal_places=4)
     anwser = models.DecimalField(verbose_name='曲率半径(m)',max_digits=10, decimal_places=4)
 
+    def __str__(self):
+        return "%s %s"%(self.user_name,self.user_num)
     class Meta:
         verbose_name = '牛顿环实验'
         verbose_name_plural = verbose_name

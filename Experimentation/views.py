@@ -15,10 +15,10 @@ from Experimentation.serializers import *
 from rest_framework.views import APIView
 
 #
-class NewtownAPIPost(viewsets.ModelViewSet):#针对于提交数据和查询自己的数据
+class NewtownAPI(viewsets.ModelViewSet):#针对于提交数据和查询自己的数据
     '''
         list:
-            返回所有用户
+            返回所有数据(禁用)
     '''
     queryset = NewTown.objects.all().order_by('-pk')
     serializer_class = NewtownSerializer
@@ -40,6 +40,15 @@ class NewtownAPIPost(viewsets.ModelViewSet):#针对于提交数据和查询自�
         data = request.data
         anwser = NewTownRang.newtown(data)
         return Response(anwser, status=HTTP_200_OK)
+
+    @action(detail=True,methods=['get'])
+    def getListById(self,request, *args, **kwargs):
+        '''根据用户的编号(非学号，用户的pk，不是实验的pk)获取其所有牛顿环实验信息信息'''
+        pk = kwargs['pk']
+        serializer = NewtownSerializer(NewTown.objects.filter(user_id__exact=pk),many=True)
+        data = serializer.data
+        print(data)
+        return Response(data,status=HTTP_200_OK)
 
 
     '''@action(detail=True, methods=['get'])#detail参数，可以设定是否需要主键
