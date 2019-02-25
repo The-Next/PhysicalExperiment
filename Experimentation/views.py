@@ -17,12 +17,13 @@ from rest_framework.views import APIView
 #
 class NewtownAPI(viewsets.ModelViewSet):#针对于提交数据和查询自己的数据
     '''
-        list:
-            返回所有数据(禁用)
+    retrieve:
+            根据实验数据主键获得信息
     '''
     queryset = NewTown.objects.all().order_by('-pk')
     serializer_class = NewtownSerializer
     permission_classes = (AllowAny,)  # 该接口权限为任意用户
+
     def create(self, request, *args, **kwargs):#如果对面传过来的json串没有值的话，将会被作为字典解析，如果有值的话，会被作为json解析
         '''提交数据验证并保存'''
         data = request.data
@@ -49,6 +50,15 @@ class NewtownAPI(viewsets.ModelViewSet):#针对于提交数据和查询自己的
         data = serializer.data
         print(data)
         return Response(data,status=HTTP_200_OK)
+
+    def list(self, request, *args, **kwargs):
+        '''获取所有实验信息(此接口无效，禁用)'''
+        return Response('该接口不允许调用',HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, *args, **kwargs):
+        '''根据id删除数据(此接口无效，禁用)'''
+        return Response('该接口不允许调用',HTTP_400_BAD_REQUEST)
+
 
 
     '''@action(detail=True, methods=['get'])#detail参数，可以设定是否需要主键

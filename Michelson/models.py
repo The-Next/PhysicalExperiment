@@ -28,14 +28,17 @@ class Michelson(models.Model):
     twelfth_six = models.DecimalField(verbose_name='△d=d<sub>12</sub>-d<sub>6</sub>(mm)',max_digits=10,decimal_places=6)
 
     '''结果参数'''
-    deltad = models.DecimalField(verbose_name= 'd的平均值',max_digits=10,decimal_places=6)
-    deltadD = models.DecimalField(verbose_name='△d的不确定度',max_digits=10,decimal_places=6)
-    lambda_avg = models.DecimalField(verbose_name='&#923;平均值',max_digits=10,decimal_places=6)
-    deltadlambda = models.DecimalField(verbose_name='&#923;不确定度',max_digits=10,decimal_places=6)
+    deltad = models.DecimalField(verbose_name= 'd的平均值(mm)',max_digits=10,decimal_places=6)
+    deltadD = models.DecimalField(verbose_name='△d的不确定度(mm)',max_digits=10,decimal_places=6)
+    lambda_avg = models.DecimalField(verbose_name='&#923;平均值(nm)',max_digits=10,decimal_places=6)
+    deltadlambda = models.DecimalField(verbose_name='&#923;不确定度(nm)',max_digits=10,decimal_places=6)
     E = models.CharField(verbose_name='相对不确定度',max_length=20)
-
     '''参数'''
-    Instrumenttolerance = models.DecimalField(verbose_name='仪器允差',max_digits=10,decimal_places=6)
+    Instrumenttolerance = models.DecimalField(verbose_name='仪器允差(mm)',max_digits=10,decimal_places=6)
+
+    def __str__(self):
+        return ("%s %s"%(self.user_name,self.user_num))
 
     class Meta:
         verbose_name = '迈克尔逊干涉仪实验'
+        verbose_name_plural = verbose_name
