@@ -30,5 +30,6 @@ urlpatterns = [
     path('register/',UserRegisterAPIView.as_view()),
     path('',include('Experimentation.urls')),
     path('',include('Michelson.urls')),
+    path('',include('StaticYoungModulus.urls')),
     path('docs/',schema_view),
 ]

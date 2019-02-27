@@ -11,8 +11,8 @@ from Michelson.serializers import *
 # Create your views here.
 class MichelsonAPI(viewsets.ModelViewSet):
     '''
-            list:
-                返回所有数据(禁用)
+    retrieve:
+            根据实验数据主键获得信息
     '''
     queryset = Michelson.objects.all().order_by('-pk')
     serializer_class = MichelsonSerializer
@@ -43,3 +43,19 @@ class MichelsonAPI(viewsets.ModelViewSet):
         data = serializer.data
         print(data)
         return Response(data,status=HTTP_200_OK)
+
+    def list(self, request, *args, **kwargs):
+        '''获取所有实验信息(当前没有需求，此接口无效，禁用)'''
+        return Response('该接口不允许调用',HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, *args, **kwargs):
+        '''根据id删除数据(当前没有需求，此接口无效，禁用)'''
+        return Response('该接口不允许调用',HTTP_400_BAD_REQUEST)
+
+    def update(self, request, *args, **kwargs):
+        '''根据主键更新信息，(当前没有需求，此接口无效，禁用)'''
+        return Response("该接口不允许调用",HTTP_400_BAD_REQUEST)
+
+    def partial_update(self, request, *args, **kwargs):
+        '''根据主键更新部分信息，(当前没有需求，此接口无效，禁用)'''
+        return Response("该接口不与许调用",HTTP_400_BAD_REQUEST)

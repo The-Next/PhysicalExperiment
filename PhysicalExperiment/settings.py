@@ -25,7 +25,7 @@ SECRET_KEY = 'i0(37!sruy%+!0*15m39ahhz6@81m4*vu)(gai(6b+&oalt#&)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'LoginValidation.apps.LoginvalidationConfig',
     'Experimentation.apps.ExperimentationConfig',
     'Michelson.apps.MichelsonConfig',
+    'StaticYoungModulus.apps.StaticyoungmodulusConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',

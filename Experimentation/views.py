@@ -52,12 +52,24 @@ class NewtownAPI(viewsets.ModelViewSet):#针对于提交数据和查询自己的
         return Response(data,status=HTTP_200_OK)
 
     def list(self, request, *args, **kwargs):
-        '''获取所有实验信息(此接口无效，禁用)'''
+        '''获取所有实验信息(当前没有需求，此接口无效，禁用)'''
         return Response('该接口不允许调用',HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, *args, **kwargs):
-        '''根据id删除数据(此接口无效，禁用)'''
+        '''根据id删除数据(当前没有需求，此接口无效，禁用)'''
         return Response('该接口不允许调用',HTTP_400_BAD_REQUEST)
+
+    def update(self, request, *args, **kwargs):
+        '''根据主键更新信息，(当前没有需求，此接口无效，禁用)'''
+        return Response("该接口不允许调用",HTTP_400_BAD_REQUEST)
+
+    def partial_update(self, request, *args, **kwargs):
+        '''根据主键更新部分信息，(当前没有需求，此接口无效，禁用)'''
+        return Response("该接口不与许调用",HTTP_400_BAD_REQUEST)
+
+
+
+
 
 
 
