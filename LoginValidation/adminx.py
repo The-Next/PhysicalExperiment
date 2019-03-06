@@ -1,6 +1,5 @@
-import xadmin
+from extra_apps import xadmin
 from xadmin import views
-from xadmin.plugins.auth import UserAdmin
 
 from LoginValidation.models import User
 

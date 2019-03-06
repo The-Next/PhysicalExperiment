@@ -13,8 +13,10 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 import datetime
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import sys
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -41,6 +43,8 @@ INSTALLED_APPS = [
     'Experimentation.apps.ExperimentationConfig',
     'Michelson.apps.MichelsonConfig',
     'StaticYoungModulus.apps.StaticyoungmodulusConfig',
+    'Spectrometer.apps.SpectrometerConfig',
+    'SonicVelocity.apps.SonicvelocityConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',

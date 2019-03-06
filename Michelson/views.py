@@ -32,7 +32,7 @@ class MichelsonAPI(viewsets.ModelViewSet):
     def only_query(self, request, *args, **kwargs):#仅仅是计算数据，不保存数据库
         '''仅仅处理数据，不保存'''
         data = request.data
-        anwser = Michelsonmain.newtown(data)
+        anwser = Michelsonmain.Michelson(data)
         return Response(anwser, status=HTTP_200_OK)
 
     @action(detail=True,methods=['get'])

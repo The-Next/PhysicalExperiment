@@ -32,7 +32,7 @@ class StaticYoungModulusAPI(viewsets.ModelViewSet):#针对于提交数据和查�
     def only_query(self, request, *args, **kwargs):  # 仅仅是计算数据，不保存数据库
         '''仅仅处理数据，不保存'''
         data = request.data
-        anwser = StaticYooungModulusmain.newtown(data)
+        anwser = StaticYooungModulusmain.StaticYoungmodulus(data)
         return Response(anwser, status=HTTP_200_OK)
 
     @action(detail=True, methods=['get'])

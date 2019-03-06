@@ -16,10 +16,7 @@ from rest_framework.views import APIView
 
 #
 class NewtownAPI(viewsets.ModelViewSet):#针对于提交数据和查询自己的数据
-    '''
-    retrieve:
-            根据实验数据主键获得信息
-    '''
+
     queryset = NewTown.objects.all().order_by('-pk')
     serializer_class = NewtownSerializer
     permission_classes = (AllowAny,)  # 该接口权限为任意用户

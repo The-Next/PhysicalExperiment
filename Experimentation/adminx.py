@@ -1,5 +1,5 @@
-import xadmin
-from xadmin.layout import Main, Fieldset, Side, Row, Col, HTML
+from extra_apps import xadmin
+from extra_apps.xadmin.layout import Main, Fieldset, Side, Row, Col, HTML
 
 from Experimentation.models import NewTown
 
@@ -29,6 +29,8 @@ class NewTownAdmin():
                        'r35_15', 'r34_14', 'r33_13', 'r32_12', 'r31_11', 'r30_10',
                        'uncertainty', 'anwser']
 
+    save_as = False
+
     def get_form_layout(self):
         if self.org_obj:
             self.form_layout = (
@@ -53,15 +55,17 @@ class NewTownAdmin():
                              Row('l33', 'r33', 'd33'),
                              Row('l34', 'r34', 'd34'),
                              Row('l35', 'r35', 'd35'),
+
                             ),
 
                     Fieldset(('各组数据对应半径平方差与曲率半径'),
                              Col('','value35_15', 'value34_14', 'value33_13', 'value32_12', 'value31_11', 'value30_10'),
                              Col('','r35_15', 'r34_14', 'r33_13', 'r32_12', 'r31_11', 'r30_10'),
-                             HTML("右侧值{{Experimentation_newtown.l11}}"),
+                             HTML(""),
                              ),
 
                 ),
+            HTML('{{crispy.user_name}}'),
                 Side(
                     Fieldset(('最终结果'),
                              'uncertainty', 'anwser',

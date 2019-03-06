@@ -1,7 +1,7 @@
-import xadmin
+from extra_apps import xadmin
 
 # Register your models here.
-from xadmin.layout import Main, Fieldset, Row, Side
+from extra_apps.xadmin.layout import Main, Fieldset, Row, Side
 from Michelson.models import Michelson
 
 class MichelsonAdmin():

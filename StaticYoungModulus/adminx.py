@@ -1,5 +1,5 @@
-import xadmin
-from xadmin.layout import Main, Fieldset, Row, Col, Side
+from extra_apps import xadmin
+from extra_apps.xadmin.layout import Main, Fieldset, Row, Col, Side
 
 from StaticYoungModulus.models import *
 # Register your models here.

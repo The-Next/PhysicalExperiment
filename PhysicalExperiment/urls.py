@@ -31,5 +31,6 @@ urlpatterns = [
     path('',include('Experimentation.urls')),
     path('',include('Michelson.urls')),
     path('',include('StaticYoungModulus.urls')),
+    path('',include('Spectrometer.urls')),
     path('docs/',schema_view),
 ]
