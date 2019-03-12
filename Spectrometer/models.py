@@ -8,8 +8,8 @@ class Spectrometer(models.Model):
     user_num = models.CharField(verbose_name='学生学号', max_length=20, blank=True, null=True, default='1')
     #测量值
     phi1_1 = models.CharField(verbose_name='&phi;<sub>1</sub>', max_length=30)
-    phi2_1 = models.CharField(verbose_name='&phi;\'<sub>2</sub>', max_length=30)
-    phi3_1 = models.CharField(verbose_name='&phi;<sub>1</sub>', max_length=30)
+    phi2_1 = models.CharField(verbose_name='&phi;<sub>2</sub>', max_length=30)
+    phi3_1 = models.CharField(verbose_name='&phi;\'<sub>1</sub>', max_length=30)
     phi4_1 = models.CharField(verbose_name='&phi;\'<sub>2</sub>', max_length=30)
     phi1_2 = models.CharField(verbose_name='&phi;<sub>1</sub>', max_length=30)
     phi2_2 = models.CharField(verbose_name='&phi;<sub>2</sub>', max_length=30)

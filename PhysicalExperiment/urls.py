@@ -13,12 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path,include
 from LoginValidation.views import *
 from Experimentation.views import *
 from  rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_swagger.views import get_swagger_view
+from django.views.static import serve
 import xadmin
 xadmin.autodiscover()
 from xadmin.plugins import xversion
@@ -32,5 +35,8 @@ urlpatterns = [
     path('',include('Michelson.urls')),
     path('',include('StaticYoungModulus.urls')),
     path('',include('Spectrometer.urls')),
+    path('',include('ThermalConductivity.urls')),
+    path('',include('DiffractionGrating.urls')),
     path('docs/',schema_view),
 ]
+urlpatterns += static('/media/', document_root=settings.MEDIA_ROOT)

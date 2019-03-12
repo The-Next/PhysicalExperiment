@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'StaticYoungModulus.apps.StaticyoungmodulusConfig',
     'Spectrometer.apps.SpectrometerConfig',
     'SonicVelocity.apps.SonicvelocityConfig',
+    'ThermalConductivity.apps.ThermalconductivityConfig',
+    'DiffractionGrating.apps.DiffractiongratingConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',
@@ -155,8 +157,16 @@ AUTH_USER_MODEL = 'LoginValidation.User'
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILE_DIRS=[
+    os.path.join(BASE_DIR,'static')
+]
+
+PROJECT_ROOT = os.path.dirname(__file__)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')     #设置静态文件路径为主目录下的media文件夹
+MEDIA_URL = '/media/'
 # 设置学号和用户名均可登录
 AUTHENTICATION_BACKENDS = (
     'LoginValidation.views.CustomBackend',
-
 )
