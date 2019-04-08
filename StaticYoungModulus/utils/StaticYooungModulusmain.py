@@ -21,8 +21,8 @@ def StaticYoungmodulus(dict={}):
     #直径
     dict['d_avg'] = round((dict['d1']+dict['d2']+dict['d3']+dict['d4']+dict['d5']+dict['d6'])/6,3)
     #结果E
-    dict['E'] = (8*F*dict['L']+dict['D'])/(3.14*(dict['d_avg']**2)*dict['K']*dict['ln'])
-    dict['E'] = round(dict['E']*10e9,3)
+    dict['E'] = (8*F*dict['L']*dict['D'])/(3.14*(dict['d_avg']**2)*(1e-10)*dict['K']*dict['ln'])
+    dict['E'] = round(dict['E'],3)
 
     dict['delta_dn'] = round(uncertainty_d(dict),3)
     dict['delta_ln'] = round(uncertainty_l(dict),3)

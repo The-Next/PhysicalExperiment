@@ -4,6 +4,7 @@ import uuid
 
 import matplotlib
 import matplotlib.pyplot as plt
+plt.switch_backend('agg')#添加这一句不会出现线程错误具体原因不明
 import numpy as np
 import math
 import json
@@ -58,7 +59,7 @@ def ThermalConductivity(dict,flag,request):
     else:
         code = uuid.uuid1().__str__()
         plt.savefig('media/temp/'+code+'.png')
-        dict['img1'] = 'http://'+request.META['HTTP_HOST']+'/media/temp/'+code+'.png'
+        dict['img1'] = request.scheme+'://'+request.META['HTTP_HOST']+'/media/temp/'+code+'.png'
 
     plt.close()
 
@@ -102,8 +103,9 @@ def ThermalConductivity(dict,flag,request):
     else:
         code = uuid.uuid1().__str__()
         plt.savefig('media/temp/'+code+'.png')
-        dict['img2'] = 'http://'+request.META['HTTP_HOST']+'/media/temp/'+code+'.png'
+        dict['img2'] = request.scheme+'://'+request.META['HTTP_HOST']+'/media/temp/'+code+'.png'
 
+    plt.close()
     calculate_avg(dict)
     onepart = (dict['D']+4*dict['hp'])/(dict['D']+2*dict['hp'])
     twopart = dict['hb']/(dict['Ta']-dict['Tp'])

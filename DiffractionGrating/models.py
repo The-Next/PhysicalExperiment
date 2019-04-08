@@ -28,8 +28,8 @@ class DiffractionGrating(models.Model):
 
     N = models.IntegerField(verbose_name='光栅有效面积内狭缝总数')
 
-    Beyond_yellow_k = models.IntegerField(verbose_name='黄内光光谱级次')
-    Inside_yellow_k = models.IntegerField(verbose_name='黄外光光谱级次')
+    Beyond_yellow_k = models.IntegerField(verbose_name='黄外光光谱级次')
+    Inside_yellow_k = models.IntegerField(verbose_name='黄内光光谱级次')
     green_k = models.IntegerField(verbose_name='绿光光谱级次')
     blue_k = models.IntegerField(verbose_name='蓝光光谱级次')
 

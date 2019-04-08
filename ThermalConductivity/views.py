@@ -27,8 +27,8 @@ class ThermalConductivityAPI(viewsets.ModelViewSet):
         del anwser['add_Tp']
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            anwser['img1'] = 'http://' + request.META['HTTP_HOST'] + "/" + anwser['img1']
-            anwser['img2'] = 'http://'+request.META['HTTP_HOST']+"/"+anwser['img2']
+            anwser['img1'] = request.scheme+'://' + request.META['HTTP_HOST'] + "/" + anwser['img1']
+            anwser['img2'] = request.scheme+'://'+request.META['HTTP_HOST']+"/"+anwser['img2']
 
             return Response(anwser,HTTP_200_OK)
         return Response(serializer.error_messages,HTTP_400_BAD_REQUEST)
