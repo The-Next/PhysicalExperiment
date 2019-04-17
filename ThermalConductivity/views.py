@@ -5,7 +5,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
-from ThermalConductivity.utils import ThermalConductivitymain
+from ThermalConductivity.utils import ThermalConductivitymain,PDF
 from ThermalConductivity.models import *
 from ThermalConductivity.serializers import *
 # Create your views here.
@@ -27,9 +27,10 @@ class ThermalConductivityAPI(viewsets.ModelViewSet):
         del anwser['add_Tp']
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            anwser['img1'] = request.scheme+'://' + request.META['HTTP_HOST'] + "/" + anwser['img1']
+            code = PDF.PDF(anwser)#制作pdf
+            ThermalConductivity_PDF.objects.create(user_name=anwser['user_name'],user_num=anwser['user_num'],uu_id=code,)#将pdf信息存入数据库
+            anwser['img1'] = request.scheme+'://' + request.META['HTTP_HOST'] + "/" + anwser['img1']#手动拼装url
             anwser['img2'] = request.scheme+'://'+request.META['HTTP_HOST']+"/"+anwser['img2']
-
             return Response(anwser,HTTP_200_OK)
         return Response(serializer.error_messages,HTTP_400_BAD_REQUEST)
 

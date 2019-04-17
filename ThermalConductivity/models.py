@@ -5,6 +5,7 @@ class ThermalConductivity(models.Model):
     user_id = models.IntegerField(verbose_name='学生编号', blank=True, null=True)
     user_name = models.CharField(verbose_name='学生姓名', max_length=20, blank=True, null=True, default='李华')
     user_num = models.CharField(verbose_name='学生学号', max_length=20, blank=True, null=True, default='1')
+    uu_id = models.CharField(verbose_name='用来关联pdf文档的id',max_length=50,blank=True,null=True)
     #散热盘降温
     Tp_1 = models.DecimalField(verbose_name='Tp1', max_digits=15, decimal_places=5,null=True,blank=True)
     Tp_2 = models.DecimalField(verbose_name='Tp2', max_digits=15, decimal_places=5,null=True,blank=True)
@@ -61,8 +62,8 @@ class ThermalConductivity(models.Model):
     img2 = models.CharField(max_length=100,verbose_name='降温曲线')
 
 
-    img10 = models.ImageField(upload_to='images/ThermalConductivity/%Y/%m/%d',verbose_name='升温曲线',null=True,blank=True)
-    img20 = models.ImageField(upload_to='images/ThermalConductivity/%Y/%m/%d',verbose_name='降温曲线',null=True,blank=True)
+    img10 = models.ImageField(upload_to='%Y/%m/%d',verbose_name='升温曲线',null=True,blank=True)
+    img20 = models.ImageField(upload_to='%Y/%m/%d',verbose_name='降温曲线',null=True,blank=True)
 
 
     k = models.DecimalField(verbose_name='导热系数', max_digits=15, decimal_places=5)
@@ -78,3 +79,9 @@ class ThermalConductivity(models.Model):
     class Meta:
         verbose_name = '非良导体热导率实验'
         verbose_name_plural = verbose_name
+
+class ThermalConductivity_PDF(models.Model):#生成实验报告的文档
+    user_name = models.CharField(verbose_name='学生姓名', max_length=20, blank=True, null=True, default='李华')
+    user_num = models.CharField(verbose_name='学生学号', max_length=20, blank=True, null=True, default='1')
+    uu_id = models.CharField(verbose_name='用来关联pdf文档的id', max_length=50, blank=True, null=True)
+    pdf_file = models.FileField('PDF文件',upload_to='pdf/ThermalConductivity')
