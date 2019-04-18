@@ -44,10 +44,10 @@ def ThermalConductivity(dict,flag,request):
     p_vals = p_p(times)
     plt.plot(times, a_vals, 'r', label='Ta')
     plt.plot(times, p_vals, 'r', label='Tp')
-    plt.xlabel('时间(S)', fontproperties=myfont)
-    plt.ylabel('温度(°C)', fontproperties=myfont)
+    plt.xlabel('时间(S)', fontproperties=myfont,fontsize=18)
+    plt.ylabel('温度(°C)', fontproperties=myfont,fontsize=18)
     plt.legend(loc=4)  # 指定legend的位置,可以自己help它的用法
-    plt.title('散热盘加热曲线', fontproperties=myfont)
+    plt.title('散热盘加热曲线', fontproperties=myfont,fontsize=18)
     if flag:
         code = uuid.uuid1().__str__()
 
@@ -88,10 +88,10 @@ def ThermalConductivity(dict,flag,request):
     dict['t'] = round(p3.__float__(), 4)
     yvals = p1(x)  # 也可以使用yvals=np.polyval(z1,x)
     plot2 = plt.plot(x, yvals, 'r', label='polyfit values')
-    plt.xlabel('时间(S)', fontproperties=myfont)
-    plt.ylabel('温度(°C)', fontproperties=myfont)
+    plt.xlabel('时间(S)', fontproperties=myfont,fontsize=18)
+    plt.ylabel('温度(°C)', fontproperties=myfont,fontsize=18)
     plt.legend(loc=4)  # 指定legend的位置,可以自己help它的用法
-    plt.title('散热盘冷却曲线', fontproperties=myfont)
+    plt.title('散热盘冷却曲线', fontproperties=myfont,fontsize=18)
     if flag:
         code = uuid.uuid1().__str__()
 

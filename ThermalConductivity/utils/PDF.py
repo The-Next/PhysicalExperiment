@@ -102,8 +102,11 @@ def PDF(dict={}):
     P = Paragraph('<b>加热盘Ta和散热盘Tp的温度（稳态法）</b>',style)
     P1 = Paragraph('散热盘初温10°C加热盘初温10°C，加热热时间间隔'+str(dict['space2'])+'s',style)
     PL = Paragraph('',style)
-    I = Paragraph('<b>散热盘Tp的冷却速率的测量（加热热时间间隔'+str(dict['space1'])+'s）</b>',style)
+    I = Paragraph('<b>散热盘Tp的冷却速率的测量（散热热时间间隔'+str(dict['space1'])+'s）</b>',style)
     H = Paragraph('<b>橡胶盘几何参数测量（橡胶盘质量'+str(dict['m'])+'kg，橡胶盘比热容'+str(dict['c'])+'J/(kg*K)）</b>',style)
+    ST = Paragraph(
+        '<b>学生签名:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp教师签名:</b>',
+        style)
     #K =Paragraph('<img src="f3.png" height=180 width=200 valign="middle" /><img src="f4.png" height=180 width=200 valign="middle"/>',style)
     #K.hAlign='center'
     #K.vAlign = "center"
@@ -111,9 +114,9 @@ def PDF(dict={}):
     #主面板
     rpt_title = '<para autoLeading="off" fontSize=16 align=center><b><font face="STSong-Light">郑州轻工业大学物理实验报告</font></b><br/><br/><br/></para>'
     component_data = [['学生姓名',dict['user_name'],'学号',dict['user_num'],'学院','软件学院'],
-                      ['专业班级','软件工程17-03','时间','%s.%s.%s'%(datetime.datetime.now().year,datetime.datetime.now().month,datetime.datetime.now().day),'教师',''],
+                      ['专业班级','软件工程17-03','时间','%s年%s月%s日'%(datetime.datetime.now().year,datetime.datetime.now().month,datetime.datetime.now().day),'实验室','109'],
                       ['实验名称','稳态法测量非良导体热导率实验','','','',''],
-                      [[tableimg,P,PL,table1,I,PL,table1,H,PL,table3],'','','','',''],
+                      [[tableimg,P,P1,PL,table1,I,PL,table1,H,PL,table3,PL,PL,PL,PL,ST,PL,PL],'','','','',''],
                       ]
 
     stylex = [
