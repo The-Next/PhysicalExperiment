@@ -135,6 +135,6 @@ def PDF(dict={}):
     story.append(Paragraph(rpt_title,normalStyle))
     story.append(component_table)
     code = uuid.uuid1().__str__()#生成唯一标识符
-    sss = reportlab.platypus.SimpleDocTemplate('media/pdf/ThermalConductivity'+code+'.pdf')
+    sss = reportlab.platypus.SimpleDocTemplate('media/pdf/ThermalConductivity/'+code+'.pdf')
     sss.build(story)
     return code

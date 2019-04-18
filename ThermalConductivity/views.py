@@ -1,3 +1,4 @@
+from django.http import FileResponse
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -23,16 +24,21 @@ class ThermalConductivityAPI(viewsets.ModelViewSet):
         data = request.data
         anwser = ThermalConductivitymain.ThermalConductivity(data,True,request)
         serializer = ThermalConductivitySerializer(data=anwser)
-        del anwser['add_Ta']
-        del anwser['add_Tp']
+
         if serializer.is_valid(raise_exception=True):
+            code = PDF.PDF(anwser)  # 制作pdf
+            #del anwser['add_Ta']
+            #del anwser['add_Tp']
+            anwser['uu_id']= code
             serializer.save()
-            code = PDF.PDF(anwser)#制作pdf
-            ThermalConductivity_PDF.objects.create(user_name=anwser['user_name'],user_num=anwser['user_num'],uu_id=code,)#将pdf信息存入数据库
+            ThermalConductivity_PDF.objects.create(user_name=anwser['user_name'],user_num=anwser['user_num'],uu_id=code,pdf_file='media/pdf/ThermalConductivity/'+code+'.pdf')#将pdf信息存入数据库
             anwser['img1'] = request.scheme+'://' + request.META['HTTP_HOST'] + "/" + anwser['img1']#手动拼装url
             anwser['img2'] = request.scheme+'://'+request.META['HTTP_HOST']+"/"+anwser['img2']
             return Response(anwser,HTTP_200_OK)
         return Response(serializer.error_messages,HTTP_400_BAD_REQUEST)
+
+
+
 
     @action(detail=False, methods=['post'])
     def only_query(self, request, *args, **kwargs):#仅仅是计算数据，不保存数据库
@@ -65,3 +71,21 @@ class ThermalConductivityAPI(viewsets.ModelViewSet):
     def partial_update(self, request, *args, **kwargs):
         '''根据主键更新部分信息，(当前没有需求，此接口无效，禁用)'''
         return Response("该接口不与许调用",HTTP_400_BAD_REQUEST)
+
+class ThermalConductivityAPI_PDF(viewsets.ModelViewSet):#pdf程序
+    queryset = ThermalConductivity_PDF.objects.all().order_by('-pk')
+    serializer_class = ThermalConductivity_PDFSerializer
+    permission_classes = (AllowAny,)  # 该接口权限为任意用户
+    @action(detail=False, methods=['post'])
+    def get_pdf(self,request,*args,**kwargs):
+        '''根据code获取对应对pdf文件,只需传入code值'''
+        serializer_class = ThermalConductivity_PDF
+        permission_classes = (AllowAny,)  # 该接口权限为任意用户
+        data = request.data
+        pdf = data['uu_id']
+        filename = ThermalConductivity_PDF.objects.filter(uu_id=pdf).values('uu_id','pdf_file')
+        file = open(filename[0]['pdf_file'],'rb')
+        response = FileResponse(file)
+        response['Content-Type'] = 'application/octet-stream'
+        response['Content-Disposition'] = 'attachment;filename="%s.pdf"' % (filename[0]['uu_id'])
+        return response
