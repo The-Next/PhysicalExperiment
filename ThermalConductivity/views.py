@@ -23,13 +23,13 @@ class ThermalConductivityAPI(viewsets.ModelViewSet):
         '''提交数据验证并保存'''
         data = request.data
         anwser = ThermalConductivitymain.ThermalConductivity(data,True,request)
-        serializer = ThermalConductivitySerializer(data=anwser)
 
+        code = PDF.PDF(anwser)  # 制作pdf
+        # del anwser['add_Ta']
+        # del anwser['add_Tp']
+        anwser['uu_id'] = code
+        serializer = ThermalConductivitySerializer(data=anwser)
         if serializer.is_valid(raise_exception=True):
-            code = PDF.PDF(anwser)  # 制作pdf
-            #del anwser['add_Ta']
-            #del anwser['add_Tp']
-            anwser['uu_id']= code
             serializer.save()
             ThermalConductivity_PDF.objects.create(user_name=anwser['user_name'],user_num=anwser['user_num'],uu_id=code,pdf_file='media/pdf/ThermalConductivity/'+code+'.pdf')#将pdf信息存入数据库
             anwser['img1'] = request.scheme+'://' + request.META['HTTP_HOST'] + "/" + anwser['img1']#手动拼装url
