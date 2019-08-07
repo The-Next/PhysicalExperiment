@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'reversion',
+    'gunicorn',
 ]
 
 MIDDLEWARE = [
@@ -96,7 +97,7 @@ DATABASES = {
         'NAME': 'physical',
         'USER':'root',
         'PASSWORD':'20141232',
-        'HOST':'localhost',
+        'HOST':'47.103.4.115',
         'PORT':'3306',
     }
 }

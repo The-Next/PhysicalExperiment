@@ -83,6 +83,7 @@ def ThermalConductivity(dict,flag,request):
             list_i.insert(count+1,'<sup>2</sup>')
             break
         count = count+1
+
     dict['p1'] = ''.join(list_i).replace("2\n",'')
     dict['p2'] = p2.__str__().replace("\n",'')
     dict['t'] = round(p3.__float__(), 4)
